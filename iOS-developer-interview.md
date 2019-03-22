@@ -1,5 +1,7 @@
 # Swift
 
+## Уровень Middle
+
 <details>
 <summary>Чем value type отличается от reference type?</summary>
     
@@ -86,7 +88,7 @@ reference type
 </details>
 
 <details>
-<summary>Как решить что использовать: weak или unowned?</summary>
+<summary>Как решить что использовать: `weak` или `unowned`?</summary>
 
 * `unowned` - более производительный вариант, нужно использовать в тех местах, где есть уверенность что объект не будет удалён.
 * `weak` - во всех остальных случаях.
@@ -157,6 +159,8 @@ Value type, который может принимать одно из зада�
 * struct
 </details>
 
+## Уровень Senior
+
 <details>
 <summary>Почему NSArray типа class, а Array - struct?</summary>
 
@@ -185,6 +189,8 @@ Value type, который может принимать одно из зада�
 
 
 # Замыкания
+
+## Уровень Middle
 
 <details>
 <summary>Что такое closure (замыкание)?</summary>
@@ -230,6 +236,8 @@ print(incrementByTen())
 
 Замыкания, помеченные как `escaping` параметр функции, могут быть вызваны после завершения функции.
 </details>
+
+## Уровень Senior
 
 <details>
 <summary>Что такое `autoclosure`?</summary>
@@ -287,6 +295,9 @@ func allValues(in array: [Int], match predicate: (Int) -> Bool) -> Bool {
 </details>
 
 # Многопоточность
+
+## Уровень Middle
+
 <details>
 <summary>Какие есть способы реализации многопоточности?</summary>
 
@@ -316,6 +327,8 @@ func allValues(in array: [Int], match predicate: (Int) -> Bool) -> Bool {
 * `DispatchQueue.async` - ставит задачу в очередь и продолжает выполнение.
 * `DispatchQueue.sync` - ставит задачу в очередь и ждёт, пока эта операция будет выполнена.
 </details>
+
+## Уровень Senior
 
 <details>
 <summary>Как синхронизировать выполнение нескольких DispatchQueue операций?</summary>
@@ -382,6 +395,9 @@ print("6")
 </details>
  
 # iOS
+
+## Уровень Middle
+
 <details>
 <summary>Какие есть состояния жизненного цикла iOS приложения?</summary>
 
@@ -425,22 +441,6 @@ print("6")
 </details>
 
 <details>
-<summary>Что будет напечатано?
-
-```Swift
-func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-	print("1")
-	DispatchQueue.main.sync { print("2") }
-	print("3")
-	return true
-}
-```
-</summary>
-
-1 (Приложение зависнет / упадёт)
-</details>
-
-<details>
 <summary>Какая разница между использованием делегатов и нотификаций?</summary>
 
 Общее:
@@ -475,6 +475,24 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
 Если используется селектор, начиная с iOS 9.0 это не обязательно. До iOS 9.0, произойдёт падение, если объект удаляется, пока у него есть подписчики.
 </details>
 
+## Уровень Senior
+
+<details>
+<summary>Что будет напечатано?
+
+```Swift
+func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+	print("1")
+	DispatchQueue.main.sync { print("2") }
+	print("3")
+	return true
+}
+```
+</summary>
+
+1 (Приложение зависнет / упадёт)
+</details>
+
 <details>
 <summary>Что такое `NSKeyValueCoding`?</summary>
 
@@ -482,19 +500,14 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
 </details>
 
 # UI
+
+## Уровень Middle
+
 <details>
 <summary>Чем `UIView` отличается от `CALayer`?</summary>
 
 * `CALayer` отвечает за представление информации на экране.
 * `UIView` содержит в себе `CALayer`, отвечает за взаимодействие с пользователем (`UIResponder`) и участвует в расчёте геометрии представления на экране (layout).
-</details>
-
-<details>
-<summary>Чем отличаются Layer tree, Presentation tree и Render tree?</summary>
-
-* Layer tree - объекты в этом дереве хранят конечные значения анимаций. При изменении свойств слоя используется объект из этого дерева.
-* Presentation tree - объекты в этом дереве хранят текущие значения анимаций.
-* Render tree - используется для фактической отрисовки. Не доступно для разработчика.
 </details>
 
 <details>
@@ -578,6 +591,16 @@ UIView.animate(withDuration: <duration>) { self.layoutIfNeeded() }
 ```
 </details>
 
+## Уровень Senior
+
+<details>
+<summary>Чем отличаются Layer tree, Presentation tree и Render tree?</summary>
+
+* Layer tree - объекты в этом дереве хранят конечные значения анимаций. При изменении свойств слоя используется объект из этого дерева.
+* Presentation tree - объекты в этом дереве хранят текущие значения анимаций.
+* Render tree - используется для фактической отрисовки. Не доступно для разработчика.
+</details>
+
 <details>
 <summary>Как работает `UIView.transform` и autolayout?</summary>
 
@@ -609,32 +632,3 @@ func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
 }    
 ```
 </details>
-
-# Архитектура
-<details>
-<summary>Какие есть принципы SOLID?</summary>
-
-* Single responsibility principle
-* Open/closed principle
-* Liskov substitution principle
-* Interface segregation principle
-* Dependency inversion principle
-</details>
-
-Привести примеры применения принципов SOLID?
-
-Спроектировать тестовое приложение с применением принципов SOLID.
-
-<details>
-<summary>Какие шаблоны проектирования есть в iOS?</summary>
-
-* Singleton
-* Delegation
-* Decorator
-* Adapter
-* Facade
-* Observer
-* Memento
-</details>
-
-Рассказать про MVVM, MVC, VIPER, REDUX, RIBs.
